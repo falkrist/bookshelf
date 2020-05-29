@@ -1,4 +1,3 @@
 ---
-- name: insstall required packages
-  import_playbook: package-install.yml
-  
+- name: install required packages
+  import_playbook: bkshlf-config

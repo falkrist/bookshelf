@@ -1,6 +1,7 @@
 ---
 - name: starting package installation
-  hosts: instance3
+  hosts: localhost
+  connection: local
 #  vars_files:
 #    - ./group_vars/vault
   tasks:

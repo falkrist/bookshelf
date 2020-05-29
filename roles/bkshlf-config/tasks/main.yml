@@ -1,0 +1,12 @@
+---
+- name: copying bookshelf config
+  hosts: localhost
+  connection: local
+  vars_files:
+    - ./group_vars/all
+  template:
+    src: templates/config.j2
+    dest: /opt/app/7-gce/config.py
+#  vars_files:
+#    - ./group_vars/vault
+  tasks:
