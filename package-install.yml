@@ -1,0 +1,59 @@
+---
+- name: starting package installation
+  hosts: instance3
+#  vars_files:
+#    - ./group_vars/vault
+  tasks:
+  - name: installing high level packs
+    package:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - build-essential
+      - supervisor
+      - python
+      - python-dev
+      - python-pip
+      - python3-pip
+      - libffi-dev
+      - libssl-dev
+      - wget
+
+  - name: install python libs
+    pip:
+      name: "{{ item }}"
+      state: forcereinstall
+    loop:
+      - virtualenv
+      - setuptools
+      - google-api-core
+      - cryptography
+      - gunicorn
+      - google-api-core
+      - psq
+  - name: install werkzeug==0.16.0
+    pip:
+    name: werkzeug==0.16.0
+
+
+
+
+#  - name: downloading and extracting WordPress
+#    unarchive:
+#      remote_src: yes
+#      src: https://wordpress.org/latest.tar.gz
+#      dest: /var/www/html/
+#      extra_opts: [--strip-components=1] ## this allow to skip first level folder
+#      owner: apache ## chown analog to change ownership of extracted files to apache
+#      group: apache ## chown analog to change ownership of extracted files to apache
+#  - name: copying wordpress config from template
+#    template:
+#      src: templates/wp-config.j2
+#      dest: /var/www/html/wp-config.php
+#    notify: wordpress-installed-restarting-httpd
+#
+#  handlers:
+#    - name: wordpress-installed-restarting-httpd
+#      service:
+#        name: httpd
+#        state: restarted

@@ -1,0 +1,5 @@
+---
+- name: insstall and configure MySQL database
+  import_playbook: db.yml
+- name: install and configure webserver
+  import_playbook: web.yml
